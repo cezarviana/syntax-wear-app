@@ -1,5 +1,6 @@
 import Banner from "@/assets/images/banner.jpg";
 import { Button } from "../Button";
+import { Overlay } from "../Overlay";
 
 export const Hero = () => {
   return (
@@ -10,16 +11,13 @@ export const Hero = () => {
           alt="Banner featuring a seated man wearing Syntaxwear footwear."
           className="w-full h-full object-cover rounded-3xl"
         />
-        <div className="absolute text-white w-full bottom-0 flex justify-end items-center px-6 md:px-24 pb-32">
-          <div className="flex flex-col items-center text-center w-[388px]">
-            <h2 className="text-xl font-medium leading-normal tracking-wider">Krypton One</h2>
-            <h1 className="text-2xl leading-9 tracking-widest mb-10">Turn every step in Presence</h1>
-            <div className="flex gap-3.5">
-             <Button variant="secondary" size="sm">View Models</Button>
-             <Button variant="primary">Buy</Button>
-            </div>
-          </div>
-        </div>
+
+        <Overlay title="Krypton One" subtitle="Turn every step into Presence" className="flex bottom-0 justify-end px-6 md:px-24 pb-32">
+          <Button variant="secondary" size="sm">
+            View Models
+          </Button>
+          <Button variant="primary">Buy</Button>
+        </Overlay>
       </section>
     </div>
   );

@@ -4,6 +4,8 @@ import galleryColorful from "@/assets/images/gallery-sneakers-colorful.jpg";
 import galleryGray from "@/assets/images/gallery-sneakers-gray.jpg";
 import galleryPurple from "@/assets/images/gallery-sneakers-purple.jpg";
 import galleryWhiteAndBlack from "@/assets/images/gallery-sneakers-white-and-black.jpg";
+import { Overlay } from "../Overlay";
+import { Button } from "../Button";
 
 export const Gallery = () => {
   return (
@@ -21,11 +23,22 @@ export const Gallery = () => {
         lg:[grid-template-areas:'highlight_highlight_sneaker-purple_sneaker-purple'_'highlight_highlight_model_sneaker-color'_'sneaker-white_sneaker-white_model_sneaker-silver']
       "
     >
-      <img
-        src={galleryMan}
-        alt="Modelo masculino usando tênis"
-        className="[grid-area:highlight] h-full w-full rounded-3xl object-cover"
-      />
+      <div className="relative [grid-area:highlight] h-full w-full">
+        <img
+          src={galleryMan}
+          alt="Modelo masculino usando tênis"
+          className="relative [grid-area:highlight] h-full w-full rounded-3xl object-cover"
+        />
+
+        <Overlay title="Krypton One" subtitle="Urban style with attitude" className="inset-0 justify-center px-6 md:px-24">
+          <Button variant="secondary" size="sm">
+            Woman
+          </Button>
+          <Button variant="secondary" size="lg">
+            Man
+          </Button>
+        </Overlay>
+      </div>
 
       <img
         src={galleryPurple}
