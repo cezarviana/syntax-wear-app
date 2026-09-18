@@ -1,21 +1,25 @@
-import { Categories } from "./components/Categories";
-import { Header } from "./components/Header";
-import { Hero } from "./components/Hero";
-import { Gallery } from "./components/Gallery";
-import { Footer } from "./components/Footer";
+// Preparam os sistemas de rotas:
+import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { routeTree } from './routeTree.gen'
+
+
+// cria instânci do roteador, passa a lista de todas as rotas disponíveis;
+const router = createRouter({ routeTree })
+
+
+// bloco de declaração de tipos para TypeScript (ajuda o TS e IA em melhores sugestões e verificação de erros);
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router;
+  }
+}
 
 function App() {
   return (
     <>
-      <Header />
-      <main className="py-10">
-        <Hero />
-        <Categories />
-        <Gallery />
-      </main>
-      <Footer />
+      <RouterProvider router={router} />
     </>
-  );
+  )
 }
 
-export default App;
+export default App
