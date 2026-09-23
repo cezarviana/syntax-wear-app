@@ -27,7 +27,7 @@ export const Header = () => {
             <ul className="flex gap-4 md:gap-10">
                 <li><a href="#" className="hidden md:block">Stores</a></li>
                 <li><a href="#" className="hidden md:block">About</a></li>
-                <li><a href="#"><img src={IconUser} alt="User icon" /></a></li>
+                <li><a href="/sign-in"><img src={IconUser} alt="User icon" /></a></li>
                 <li><a href="#"><img src={IconAbout} alt="About icon" /></a></li>
                 <li><a href="#"><img src={IconCart} alt="Cart icon" /></a></li>
             </ul>
