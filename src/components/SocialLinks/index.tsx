@@ -12,7 +12,7 @@ const socialLinks = [
 
 export const SocialLinks = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mb-6">
       <p className="mb-4 text-x1 font-medium text-surface-alt tracking-wider">
         Redes Sociais
       </p>
