@@ -28,14 +28,16 @@ export const Header = () => {
           </nav>
 
           <nav>
-            <ul className="flex gap-4 md:gap-10">
+            <ul className="flex gap-4 md:gap-10 items-center">
               <li>
-                <Link to="/our-stores" className="hidden md:block">Stores</Link>
+                <Link to="/our-stores" className="hidden md:block">
+                  Stores
+                </Link>
               </li>
               <li>
-                <a href="#" className="hidden md:block">
+                <Link to="/about" className="hidden md:block">
                   About
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="/sign-in">
