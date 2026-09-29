@@ -1,27 +1,25 @@
 import IconCart from '@/assets/images/icon-cart.png'
 import { useContext, useState } from 'react'
-import MensTreeDasher from '@/assets/images/tree-dasher-2-natural-black-boyal-blue.webp'
-import MensTreeRunnerNz from '@/assets/images/tree-runner-nz-weathered-brown.webp'
-import MensWoolCruiser from '@/assets/images/wool-cruiser-burgundy.webp'
-import MensWoolCruiserSlipOn from '@/assets/images/wool-cruiser-slip-on-dark-grey.webp'
-import MensWoolCruiserWaterproof from '@/assets/images/wool-cruiser-waterproof-natural-black.webp'
 import formatCurrency from '#/utils/format-currency'
 import { CartContext } from '#/contexts/CartContext'
 
 export const ShoppingCart = () => {
   const [cartIsOpen, setCartIsOpen] = useState<boolean>(false)
-  const { cart, addToCart, removeFromCart, incrementInCart, decrementInCart } = useContext(CartContext)
-
-  console.log("Cart items: ", cart)
+  const { cart, addToCart, removeFromCart, incrementInCart, decrementInCart } =
+    useContext(CartContext)
 
   return (
     <>
-      <button>
-        <img
-          src={IconCart}
-          alt="shopping cart icon"
-          onClick={() => setCartIsOpen(!cartIsOpen)}
-        />
+      <button
+        className="relative cursor-pointer"
+        onClick={() => setCartIsOpen(!cartIsOpen)}
+      >
+        <img src={IconCart} alt="shopping cart icon" />
+        {cart.length > 0 && (
+          <span className="absolute -bottom-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+            {cart.length}
+          </span>
+        )}
       </button>
 
       {/* Overlay */}
@@ -48,7 +46,12 @@ export const ShoppingCart = () => {
           <ul className="flex flex-col gap-3 p-4 overflow-y-auto scrollbar-hide h-[calc(100%_-_140px)]">
             {cart.map((product) => (
               <li key={product.id} className="flex flex-col gap-1 px-6">
-                <button className="self-end text-xs cursor-pointer" onClick={() => removeFromCart(product.id)}>X</button>
+                <button
+                  className="self-end text-xs cursor-pointer"
+                  onClick={() => removeFromCart(product.id)}
+                >
+                  X
+                </button>
                 <div className="flex gap-4">
                   <img
                     src={product.image}
@@ -65,9 +68,19 @@ export const ShoppingCart = () => {
                     </p>
 
                     <div className="flex gap-3 border py-1 px-3">
-                      <button className="cursor-pointer" onClick={() => decrementInCart(product)}>-</button>
+                      <button
+                        className="cursor-pointer"
+                        onClick={() => decrementInCart(product)}
+                      >
+                        -
+                      </button>
                       <p className="">{product.quantity}</p>
-                      <button className="cursor-pointer" onClick={() => incrementInCart(product)}>+</button>
+                      <button
+                        className="cursor-pointer"
+                        onClick={() => incrementInCart(product)}
+                      >
+                        +
+                      </button>
                     </div>
                   </div>
                 </div>
