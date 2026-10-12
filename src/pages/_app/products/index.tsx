@@ -4,6 +4,11 @@ import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_app/products/')({
   component: RouteComponent,
+    head: () => ({
+    meta: [
+      { title: 'Products - SyntaxWear' }
+    ]
+  })
 })
 
 function RouteComponent() {

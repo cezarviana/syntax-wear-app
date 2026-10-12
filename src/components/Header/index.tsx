@@ -30,7 +30,6 @@ export const Header = () => {
                 <Link to={link.href} key={link.name}>
                   {link.name}
                 </Link>
-
               ))}
             </ul>
           </nav>
@@ -44,12 +43,12 @@ export const Header = () => {
                 <Link to="/about">About</Link>
               </li>
               <li className="lg:hidden flex items-center">
-                <MenuMobile navLinks={navLinks}/>
+                <MenuMobile navLinks={navLinks} />
               </li>
               <li className="hidden lg:block">
-                <a href="/sign-in">
+                <Link to="/sign-up">
                   <img src={IconUser} alt="User icon" />
-                </a>
+                </Link>
               </li>
               <li className="hidden lg:block">
                 <Link to="/about">

@@ -6,6 +6,11 @@ import { Gallery } from '../../components/Gallery'
 
 export const Route = createFileRoute('/_app/')({
   component: Home,
+    head: () => ({
+    meta: [
+      { title: 'Home - SyntaxWear' }
+    ]
+  })
 })
 
 function Home() {

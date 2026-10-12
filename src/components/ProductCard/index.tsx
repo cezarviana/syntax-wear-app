@@ -15,12 +15,12 @@ export const ProductCard = ({product}: ProductCardProps) => {
   const { addToCart } = useContext(CartContext)
 
     return (
-        <div className="bg-white rounded-2xl shadow-md">
+        <div className="flex flex-col bg-white rounded-2xl shadow-md">
           <Link to="/products/$productId" params={{ productId: String(product.id) }}>
             <img
               src={product.image}
               alt={product.name}
-              className="flex w-full max-h-[400px] object-cover rounded-2xl mb-2"
+              className="flex w-full max-h-[400px]object-cover rounded-2xl mb-2"
             />
           </Link>
           <div className="text-black rounded-2xl p-6">

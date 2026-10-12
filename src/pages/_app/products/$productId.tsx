@@ -7,6 +7,17 @@ import { ZipCodeForm } from '#/components/ZipCode'
 
 export const Route = createFileRoute('/_app/products/$productId')({
   component: RouteComponent,
+  head: ({ params }) => {
+    const filteredProduct = products.find(
+      (product) => product.id === Number(params.productId),
+    )
+
+    const title = filteredProduct
+      ? `${filteredProduct.name} - Products - SyntaxWear`
+      : 'Product not found - Products - SyntaxWear'
+
+    return { meta: [{ title }] }
+  },
 })
 
 function RouteComponent() {
@@ -20,13 +31,18 @@ function RouteComponent() {
 
   if (!filteredProduct)
     return (
-      <section className="container mb-10 pt-44 md:pt-54 pb-10 px-2 md:px-10 mb-10 text-black text-center flex flex-col align-center justify-center bg-surface min-h-[60vh]">
+      <section className="container pt-44 md:pt-54 pb-10 px-2 md:px-10 mb-10 text-black text-center flex flex-col align-center justify-center bg-surface min-h-[60vh]">
         <h1 className="text-3xl font-bold mb-4">Product not found</h1>
         <p className="mb-6">
           {' '}
           The product you are looking for does not exist or is not available.
         </p>
-        <Link to="/products" className="text-accent hover:text-accent-hover underline" >Browser products</Link>
+        <Link
+          to="/products"
+          className="text-accent hover:text-accent-hover underline"
+        >
+          Browser products
+        </Link>
       </section>
     )
 
