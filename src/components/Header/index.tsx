@@ -1,7 +1,6 @@
 import Logo from '@/assets/images/logo.png'
 import IconUser from '@/assets/images/icon-user.png'
 import IconAbout from '@/assets/images/icon-about.png'
-import IconCart from '@/assets/images/icon-cart.png'
 import { Link } from '@tanstack/react-router'
 import { ShoppingCart } from '../ShoppingCart'
 import { MenuMobile } from '../MenuMobile'
@@ -12,9 +11,9 @@ export interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { name: 'Man', href: '/products' },
-  { name: 'Woman', href: '/products' },
-  { name: 'Outlet', href: '/products' },
+  { name: 'Man', href: '/products/category/man' },
+  { name: 'Woman', href: '/products/category/woman' },
+  { name: 'Outlet', href: '/products/category/outlet' },
 ]
 
 export const Header = () => {

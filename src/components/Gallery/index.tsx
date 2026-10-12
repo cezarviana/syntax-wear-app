@@ -1,13 +1,16 @@
-import galleryMan from "@/assets/images/gallery-man.jpg";
-import galleryModel from "@/assets/images/gallery-model.jpg";
-import galleryColorful from "@/assets/images/gallery-sneakers-colorful.jpg";
-import galleryGray from "@/assets/images/gallery-sneakers-gray.jpg";
-import galleryPurple from "@/assets/images/gallery-sneakers-purple.jpg";
-import galleryWhiteAndBlack from "@/assets/images/gallery-sneakers-white-and-black.jpg";
-import { Overlay } from "../Overlay";
-import { Button } from "../Button";
+import galleryMan from '@/assets/images/gallery-man.jpg'
+import galleryModel from '@/assets/images/gallery-model.jpg'
+import galleryColorful from '@/assets/images/gallery-sneakers-colorful.jpg'
+import galleryGray from '@/assets/images/gallery-sneakers-gray.jpg'
+import galleryPurple from '@/assets/images/gallery-sneakers-purple.jpg'
+import galleryWhiteAndBlack from '@/assets/images/gallery-sneakers-white-and-black.jpg'
+import { Overlay } from '../Overlay'
+import { Button } from '../Button'
+import { useRouter } from '@tanstack/react-router'
 
 export const Gallery = () => {
+  const router = useRouter()
+
   return (
     <section
       className="
@@ -30,11 +33,33 @@ export const Gallery = () => {
           className="relative [grid-area:highlight] h-full w-full rounded-3xl object-cover"
         />
 
-        <Overlay title="Krypton One" subtitle="Urban style with attitude" className="inset-0 justify-center px-6 md:px-24">
-          <Button variant="secondary" size="sm">
+        <Overlay
+          title="Krypton One"
+          subtitle="Urban style with attitude"
+          className="inset-0 justify-center px-6 md:px-24"
+        >
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={() =>
+              router.navigate({
+                to: '/products/category/$category',
+                params: { category: 'woman'.toLowerCase() },
+              })
+            }
+          >
             Woman
           </Button>
-          <Button variant="secondary" size="lg">
+          <Button
+            variant="secondary"
+            size="lg"
+            onClick={() =>
+              router.navigate({
+                to: '/products/category/$category',
+                params: { category: 'man'.toLowerCase() },
+              })
+            }
+          >
             Man
           </Button>
         </Overlay>
@@ -70,5 +95,5 @@ export const Gallery = () => {
         className="[grid-area:sneaker-silver] h-full w-full rounded-3xl object-cover"
       />
     </section>
-  );
-};
+  )
+}

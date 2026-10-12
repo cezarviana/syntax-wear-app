@@ -3,10 +3,11 @@ interface ButtonProps {
     children: React.ReactNode;
     variant?: "primary" | "secondary";
     size?: "sm" | "md" | "lg";
+    onClick?: () => void;
 }
 
 
-export const Button = ({ children, variant = "primary", size = "md" }: ButtonProps) => {
+export const Button = ({ children, variant = "primary", size = "md", onClick }: ButtonProps) => {
 
     const buttonStyles = {
         base: "flex justify-center items-center rounded-full gap-2 text-nowrap leading-none hover:cursor-pointer transition-colors duration-300 py-2.5",
@@ -24,7 +25,9 @@ export const Button = ({ children, variant = "primary", size = "md" }: ButtonPro
     const className= `${buttonStyles.base} ${buttonStyles.variant[variant]} ${buttonStyles.size.md} ${buttonStyles.size[size]}`;
 
     return (
-        <button className={className}>{children}</button>
+        <button className={className} onClick={onClick}>
+            {children}
+        </button>
     )
 }
 

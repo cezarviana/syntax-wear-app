@@ -3,22 +3,32 @@ import { products } from '#/mocks/products'
 import { formatCurrency } from '#/utils/format-currency'
 import { useContext } from 'react'
 import { CartContext } from '#/contexts/CartContext'
+import { ZipCodeForm } from '#/components/ZipCode'
 
 export const Route = createFileRoute('/_app/products/$productId')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-
-  const { addToCart } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext)
 
   const { productId } = Route.useParams()
 
   const filteredProduct = products.find(
     (product) => product.id === Number(productId),
-  );
+  )
 
-  if(!filteredProduct) return;
+  if (!filteredProduct)
+    return (
+      <section className="container mb-10 pt-44 md:pt-54 pb-10 px-2 md:px-10 mb-10 text-black text-center flex flex-col align-center justify-center bg-surface min-h-[60vh]">
+        <h1 className="text-3xl font-bold mb-4">Product not found</h1>
+        <p className="mb-6">
+          {' '}
+          The product you are looking for does not exist or is not available.
+        </p>
+        <Link to="/products" className="text-accent hover:text-accent-hover underline" >Browser products</Link>
+      </section>
+    )
 
   const originalPrice = filteredProduct?.price ?? 0
   const discountPrice = originalPrice * 0.9
@@ -56,18 +66,17 @@ function RouteComponent() {
             </span>
             <p className="max-w-[500px] my-5">{filteredProduct?.description}</p>
           </p>
-          <div className='mb-3'>
+          <div className="mb-3">
             <p>Estimated delivery</p>
-            <form className="flex gap-3 ">
-              <input
-                type="text"
-                placeholder="Zip Code"
-                className="rounded-md p-3 border border-[#C0C0C0]"
-              />
-              <button className="bg-black text-white py-3 px-6 rounded-md cursor-pointer hover:bg-gray-800">Caculate</button>
-            </form>
+
+            <ZipCodeForm />
           </div>
-          <button className="bg-black text-white w-full p-5 rounded-md cursor-pointer hover:bg-gray-800" onClick={() => addToCart(filteredProduct)}>Add to cart</button>
+          <button
+            className="bg-black text-white w-full p-5 rounded-md cursor-pointer hover:bg-gray-800"
+            onClick={() => addToCart(filteredProduct)}
+          >
+            Add to cart
+          </button>
         </div>
       </div>
     </section>
