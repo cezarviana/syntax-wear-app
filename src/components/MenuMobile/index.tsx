@@ -23,7 +23,7 @@ export const MenuMobile = ({ navLinks }: MenuMobileProps) => {
 
       {/* Overlay */}
       <div
-        className={`fixed inset-0 transition-opacity duration-500 z-30 ${
+        className={`fixed inset-0 transition-opacity duration-600 ease-in-out z-30 ${
           menuIsOpen
             ? 'visible bg-black/70 opacity-100'
             : 'pointer-events-none invisible opacity-0'

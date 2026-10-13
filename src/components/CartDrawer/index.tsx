@@ -1,44 +1,34 @@
-import IconCart from '@/assets/images/icon-cart.png'
 import { useContext, useState } from 'react'
 import formatCurrency from '#/utils/format-currency'
 import { CartContext } from '#/contexts/CartContext'
 
-export const ShoppingCart = () => {
-  const [cartIsOpen, setCartIsOpen] = useState<boolean>(false)
-  const { cart, addToCart, removeFromCart, incrementInCart, decrementInCart } =
+interface CartDrawerProps {
+  isOpen: boolean
+  onClose: () => void
+}
+
+export const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
+  const { cart, removeFromCart, incrementInCart, decrementInCart } =
     useContext(CartContext)
 
   return (
     <>
-      <button
-        className="relative cursor-pointer"
-        onClick={() => setCartIsOpen(!cartIsOpen)}
-      >
-        <img src={IconCart} alt="shopping cart icon" />
-        {cart.length > 0 && (
-          <span className="absolute -bottom-2 -right-2 bg-error text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-            {cart.length}
-          </span>
-        )}
-      </button>
-
       {/* Overlay */}
       <div
-        className={`fixed inset-0 transition-opacity duration-500 ${
-          cartIsOpen
-            ? 'visible bg-black/70 opacity-100'
-            : 'pointer-events-none invisible opacity-0'
-        }`}
-        onClick={() => setCartIsOpen(!cartIsOpen)}
+        className={`${isOpen ? ' bg-black/70 visible inset-0 z-50' : 'bg-transparent inset-0 z-50 invisible'} fixed  text-black transition-all duration-600 ease-in-out`}
+        onClick={onClose}
       >
-        {/* Drawer */}
+        {/* Drawer 
+            translate-x-0: Drawer is open on screen;
+            translate-x-full: Drawer is "closed" outside of the screen on the right side;
+        */}
         <div
-          className={`absolute top-0 bottom-0 right-0 bg-white pt-6 transition-all duration-500 ease-in-out w-75 md:w-106 ${cartIsOpen ? 'translate-x-0' : 'translate-x-full'} `}
+          className={`${isOpen ? 'translate-x-0' : 'translate-x-full'} absolute top-0 bottom-0 right-0 bg-white pt-6 transition-all duration-500 ease-in-out w-75 md:w-106`}
           onClick={(e) => e.stopPropagation()}
         >
           <header className="flex items-center justify-between px-5">
             <p className="text-2xl font-bold">Cart ({cart.length})</p>
-            <button className="text-xl" onClick={() => setCartIsOpen(false)}>
+            <button className="text-xl cursor-pointer" onClick={onClose}>
               X
             </button>
           </header>
