@@ -58,13 +58,13 @@ export const ZipCodeForm = () => {
           <input
             type="text"
             placeholder="Zip Code"
-            className={`rounded-md p-3 border border-[#C0C0C0] ${errors.zip ? 'border-red-500' : ''}`}
+            className={`rounded-md p-3 border border-border ${errors.zip ? 'border-error' : ''}`}
             aria-invalid={!!errors.zip}
             {...register('zip')}
           />
         </div>
         {errors.zip && (
-          <span className="text-red-600 text-sm mt-1">
+          <span className="text-error text-sm mt-1">
             {String(errors.zip.message)}
           </span>
         )}
@@ -78,7 +78,7 @@ export const ZipCodeForm = () => {
 
       {addressError && (
         <div className="m-4">
-          <p className='text-red-600 text-sm mt-1'>{addressError}</p>
+          <p className='text-error text-sm mt-1'>{addressError}</p>
         </div>
       )}
 

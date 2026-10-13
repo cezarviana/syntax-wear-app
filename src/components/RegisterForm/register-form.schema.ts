@@ -31,7 +31,7 @@ export const registerUserFormSchema = z
   })
 
 // Tipo inferido para uso no TypeScript (ex: useForm do React Hook Form)
-type RegisterFormData = z.infer<typeof registerUserFormSchema>
+export type RegisterFormData = z.infer<typeof registerUserFormSchema>
 
 
 export const useRegisterForm = () => {
