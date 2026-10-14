@@ -39,8 +39,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       newCart = [...cart, { ...product, quantity: 1 }]
     }
 
-    const newProduct = { ...product, quantity: 1 }
-
     setCart(newCart)
   }
 

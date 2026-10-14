@@ -11,7 +11,7 @@ export const RegisterForm = () => {
         : 'border-border focus:ring-accent'
     }`
 
-  //function Para testar o sending do botão
+  // function Para testar o sending do botão
   const onSubmit = async (data: RegisterFormData) => {
     await new Promise((resolve) => setTimeout(resolve, 2000))
     console.log(data)

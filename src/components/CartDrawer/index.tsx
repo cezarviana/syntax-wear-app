@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import formatCurrency from '#/utils/format-currency'
 import { CartContext } from '#/contexts/CartContext'
 
