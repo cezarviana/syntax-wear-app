@@ -1,194 +1,116 @@
-Welcome to your new TanStack Start app!
+# SyntaxWear App
 
-# Getting Started
+*Leia em português: [🇧🇷 Português](README.pt-br.md)*
 
-To run this application:
+## 📝 Project Description
 
-```bash
-npm install
-npm run dev
+SyntaxWear is a responsive footwear storefront built with React and TypeScript. It brings together a product catalog, category browsing, product details, a shopping cart, and informational pages in one e-commerce-style experience.
+
+The project is a frontend study/demo: product data is local, and account and checkout flows are not connected to a real commerce or authentication service.
+
+Access the website here: [Syntax Wear App](https://syntax-wear-app-black.vercel.app/)
+
+## 🎨 Project Overview
+
+<div align="center">
+   <div align="center">
+   <img src="./src/assets/desktop.gif"  style="height: 300px; text-align: center;"> 
+   <br><br>
+   <img src="./src/assets/mobile.gif"  style="height: 300px; text-align: center;"> <br>
+   </div>
+</div>
+
+## 🔎 Features
+
+- Responsive storefront with home, about, and stores pages
+- Product catalog with category and product detail pages
+- Add products to the cart, change quantities, and remove items
+- Cart contents persisted in the browser using `localStorage`
+- ZIP code lookup using the ViaCEP API and estimated shipping cost by region
+- Sign-up form with client-side validation
+- Reusable React components and typed product/category data
+
+> The sign-in, sign-up submission, and checkout are UI demonstrations only; no user account or order is created.
+
+## 🛠️ Technologies Used
+
+- React 19 and TypeScript
+- Vite
+- TanStack Router
+- Tailwind CSS 4
+- React Hook Form and Zod
+- React Icons
+- `localStorage` for cart persistence
+- ViaCEP API for ZIP code lookup
+
+## 💡 Project Decisions
+
+1. **Component-based UI** — shared elements such as the header, footer, product cards, forms, and cart drawer are organized as reusable components.
+2. **Client-side routing** — TanStack Router provides routes for the storefront, product categories, product details, and account screens.
+3. **Local catalog data** — products and categories are defined in `src/mocks/`, keeping the demo independent of a product backend.
+4. **Cart state** — a React context centralizes cart operations; the cart is restored from and saved to `localStorage`.
+5. **Form validation** — React Hook Form and Zod are used for form handling and validation.
+
+## 📁 Project Structure
+
+```text
+src/
+├── assets/          # Images and fonts
+├── components/      # Shared UI components
+├── contexts/        # Cart context and provider
+├── interfaces/      # Product, category, and address types
+├── mocks/           # Local product and category data
+├── pages/
+│   ├── _app/        # Storefront pages
+│   └── _auth/       # Sign-in and sign-up pages
+├── styles/          # Global styles
+├── utils/           # Formatting and validation helpers
+├── App.tsx
+├── main.tsx
+├── router.tsx
+└── routeTree.gen.ts # Generated route tree
 ```
 
-# Building For Production
+## 🚀 Getting Started
 
-To build this application for production:
+### Prerequisites
 
-```bash
-npm run build
-```
+- Node.js compatible with Vite 8
+- npm
+- Git
 
-## Styling
+### Installation
 
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
+1. Clone the repository:
 
-### Removing Tailwind CSS
+   ```bash
+   git clone https://github.com/cezarviana/syntax-wear-app.git
+   cd syntax-wear-app
+   ```
 
-If you prefer not to use Tailwind CSS:
+2. Install dependencies:
 
-1. Remove the demo pages in `src/routes/demo/`
-2. Replace the Tailwind import in `src/styles.css` with your own styles
-3. Remove `tailwindcss()` from the plugins array in `vite.config.ts`
-4. Remove `@tailwindcss/vite` and `tailwindcss` from `package.json`
+   ```bash
+   npm install
+   ```
 
-## Linting & Formatting
+3. Start the development server:
 
+   ```bash
+   npm run dev
+   ```
 
-This project uses [eslint](https://eslint.org/) and [prettier](https://prettier.io/) for linting and formatting. Eslint is configured using [tanstack/eslint-config](https://tanstack.com/config/latest/docs/eslint). The following scripts are available:
+4. Open the URL printed in the terminal. The configured local address is usually `http://localhost:3000`.
 
-```bash
-npm run lint
-npm run format
-npm run check
-```
+### Available Scripts
 
+- `npm run dev` — start the Vite development server on port 3000
+- `npm run build` — type-check and create the production build
+- `npm run preview` — preview the production build locally
+- `npm run lint` — run ESLint
+- `npm run check` — check formatting with Prettier
+- `npm run generate-routes` — generate the TanStack Router route tree
 
+## 📌 Notes
 
-## Routing
-
-This project uses [TanStack Router](https://tanstack.com/router) with file-based routing. Routes are managed as files in `src/routes`.
-
-### Adding A Route
-
-To add a new route to your application just add a new file in the `./src/routes` directory.
-
-TanStack will automatically generate the content of the route file for you.
-
-Now that you have two routes you can use a `Link` component to navigate between them.
-
-### Adding Links
-
-To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/react-router`.
-
-```tsx
-import { Link } from "@tanstack/react-router";
-```
-
-Then anywhere in your JSX you can use it like so:
-
-```tsx
-<Link to="/about">About</Link>
-```
-
-This will create a link that will navigate to the `/about` route.
-
-More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/react/api/router/linkComponent).
-
-### Using A Layout
-
-In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes. The route content will appear in the JSX where you render `{children}` in the `shellComponent`.
-
-Here is an example layout that includes a header:
-
-```tsx
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
-
-export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'My App' },
-    ],
-  }),
-  shellComponent: ({ children }) => (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <header>
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-          </nav>
-        </header>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  ),
-})
-```
-
-More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
-## Server Functions
-
-TanStack Start provides server functions that allow you to write server-side code that seamlessly integrates with your client components.
-
-```tsx
-import { createServerFn } from '@tanstack/react-start'
-
-const getServerTime = createServerFn({
-  method: 'GET',
-}).handler(async () => {
-  return new Date().toISOString()
-})
-
-// Use in a component
-function MyComponent() {
-  const [time, setTime] = useState('')
-  
-  useEffect(() => {
-    getServerTime().then(setTime)
-  }, [])
-  
-  return <div>Server time: {time}</div>
-}
-```
-
-## API Routes
-
-You can create API routes by using the `server` property in your route definitions:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-import { json } from '@tanstack/react-start'
-
-export const Route = createFileRoute('/api/hello')({
-  server: {
-    handlers: {
-      GET: () => json({ message: 'Hello, World!' }),
-    },
-  },
-})
-```
-
-## Data Fetching
-
-There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
-
-For example:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-
-export const Route = createFileRoute('/people')({
-  loader: async () => {
-    const response = await fetch('https://swapi.dev/api/people')
-    return response.json()
-  },
-  component: PeopleComponent,
-})
-
-function PeopleComponent() {
-  const data = Route.useLoaderData()
-  return (
-    <ul>
-      {data.results.map((person) => (
-        <li key={person.name}>{person.name}</li>
-      ))}
-    </ul>
-  )
-}
-```
-
-Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
-
-
-
-# Learn More
-
-You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
-
-For TanStack Start specific documentation, visit [TanStack Start](https://tanstack.com/start).
+SyntaxWear is a portfolio/demo storefront and does not process payments or persist customer accounts. ZIP code lookup requires an internet connection to reach ViaCEP.
